@@ -1,0 +1,13 @@
+Name,Set Min.,Set Max.,Result,Unit,Status
+20V,0,0,0.0,V,Passed
+30A,0,0,0.0,A,Passed
+kV,,,,kV,Passed
+mA,0,0,0.0,mA,Passed
+Insulation,0,0,0.0,MΩ,Passed
+Voltmeter,0,0,579.4,V,Failed
+VAW,0,0,0,V,Passed
+VAW,0,0,0,A,Passed
+VAW,0,0,0,W,Passed
+MicroAmpere,0,0,0.0,μA-1,Passed
+PF,0,0,0.0,,Passed
+Frequency,0,0,0.0,Hz,Passed

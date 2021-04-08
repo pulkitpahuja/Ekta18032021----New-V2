@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <link rel="stylesheet" href="{{
+      url_for('static', filename='calib.css') }}" />
+  <link rel="stylesheet" href="{{
+        url_for('static', filename='bootstrap.min.css') }}" />
+  <script type=text/javascript src="{{
+          url_for('static', filename='jquery-3.5.1.min.js') }}"></script>
+  <script type=text/javascript src="{{
+        url_for('static', filename='bootstrap.min.js') }}"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script type=text/javascript src="{{
+      url_for('static', filename='date.js') }}"></script>
+
+  <title>Ekta Instruments -Load Data</title>
+</head>
+
+<body>
+
+
+
+  <main>
+    <nav class="navbar navbar-expand-md navbar-light bg-lg-light">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="m-3 nav-link btn btn-outline-warning" href="/main.html">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="m-3 nav-link btn btn-outline-success" data-toggle="modal" data-target="#exampleModalCenter"
+              href="#">Historical</a>
+          </li>
+        </ul>
+      </div>
+      <div class="mx-auto order-0">
+        <a style="font-size: 30px;" class="navbar-brand mx-auto">Ekta Instruments</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mr-2">
+            <h5 class="mr-3">Config :</h5>
+
+          </li>
+          <li class="nav-item  mr-2">
+
+            <input type="file" id="file-input" />
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+
+    <div class="m-4 card text-center">
+      <div class="card-header">
+        <div>
+          <h3><a onclick="changeorg()" style="color: black;" href="#">Organization: </a><strong style="color: black;"
+              id="org_id"></strong></h3>
+        </div>
+
+        <h5>Device : <strong style="color: green;" id="device_id"></strong></h5>
+        <h5>Time of test : <strong style="color: green;" id="datetime"></strong></h5>
+        <button class="btn btn-outline-success my-2 my-sm-0" onclick="download_csv()" type="submit">CSV</button>
+        <button class="btn btn-outline-primary my-2 my-sm-0" onclick="window.print()" type="submit">Print</button>
+
+
+      </div>
+      <div class="card-body">
+
+        <div class="row">
+
+          <div class="card col-2 text-center">
+            <div class="card-header">
+              <strong id="name_1"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_1" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_1"></strong>
+            </div>
+          </div>
+
+          <div class="card col-2 text-center">
+            <div class="card-header">
+              <strong id="name_2"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_2" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_2"></strong>
+            </div>
+          </div>
+
+          <div class="card col-2 text-center">
+            <div class="card-header">
+              <strong id="name_3"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_3" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_3"></strong>
+            </div>
+          </div>
+
+          <div class="card col-2 text-center">
+            <div class="card-header">
+              <strong id="name_4"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_4" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_4"></strong>
+            </div>
+          </div>
+
+          <div class="card col-2 text-center">
+            <div class="card-header">
+              <strong id="name_5"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_5" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_5"></strong>
+            </div>
+          </div>
+
+          <div class="card col-2 text-center">
+            <div class="card-header">
+              <strong id="name_6"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_6" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_6"></strong>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mt-3">
+
+          <div class="card col-2 text-center">
+            <div class="card-header">
+              <strong id="name_7"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_7" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_7"></strong>
+            </div>
+          </div>
+
+          <div class="card col-2 text-center">
+            <div class="card-header">
+              <strong id="name_8"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_8" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_8"></strong>
+            </div>
+          </div>
+
+          <div class="card col-2 text-center">
+            <div class="card-header">
+              <strong id="name_13"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_13" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_13"></strong>
+            </div>
+          </div>
+
+          <div class="card col-2 text-center">
+            <div class="card-header">
+              <strong id="name_9"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_9" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_9"></strong>
+            </div>
+          </div>
+
+          <div class="card col-2 text-center">
+            <div class="card-header">
+              <strong id="name_10"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_10" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_10"></strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+
+          <div class="card col-6 text-center">
+            <div class="card-header">
+              <strong id="name_11"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_11" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_11"></strong>
+            </div>
+          </div>
+
+          <div class="card col-6 text-center">
+            <div class="card-header">
+              <strong id="name_12"></strong>
+            </div>
+            <div class="card-body">
+              <h5 id="result_12" class="card-title"></h5>
+            </div>
+            <div class="card-footer">
+              <strong id="status_12"></strong>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title " id="exampleModalLongTitle">Download Historical Data</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <form>
+                <label class="m-3" for="birthday">Start Date:</label>
+                <input class="m-3" type="date" id="start_date" name="start_date">
+              </form>
+              <form>
+                <label class="m-3" for="end_date">End Date</label>
+                <input class="m-3" type="date" id="end_date" name="end_date">
+              </form>
+            </div>
+          </div>
+          <p class="text-center m-3" id="alert"></p>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="button" id="downloadFullCSV" class="btn btn-primary">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <script type=text/javascript src="{{
+      url_for('static', filename='load_data.js') }}"></script>
+</body>
+
+</html>
